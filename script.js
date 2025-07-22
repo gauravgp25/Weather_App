@@ -5,6 +5,13 @@ const cityField = document.querySelector('.time_location p')
 const dateField = document.querySelector(".time_location span");
 const emojiField = document.querySelector(".weather-icon img");
 const weatherField = document.querySelector(".weather_condition span");
+const feelsLikeField = document.querySelector('.weather-details .detail-item:nth-child(1) .value');
+const humidityField = document.querySelector('.weather-details .detail-item:nth-child(2) .value');
+const windField = document.querySelector('.weather-details .detail-item:nth-child(3) .value');
+const visibilityField = document.querySelector('.weather-details .detail-item:nth-child(4) .value');
+const uvIndexField = document.querySelector('.weather-details .detail-item:nth-child(5) .value');
+const pressureField = document.querySelector('.weather-details .detail-item:nth-child(6) .value');
+
 let target = 'Mumbai'
 
 
@@ -36,6 +43,24 @@ async function fetchData(target){
      let localTime = data.location.localtime
      let condition = data.current.condition.text
      let conditionIcon = data.current.condition.icon
+     let feelsLike = data.current.feelslike_c
+     let humidity = data.current.humidity
+     let wind = data.current.wind_kph
+     let visibility = data.current.vis_km
+     let uvIndex = data.current.uv
+     let pressure = data.current.pressure_mb
+     feelsLikeField.innerText = feelsLike + '°'
+     humidityField.innerText = humidity + '%'
+     windField.innerText = wind + ' km/h ' + data.current.wind_dir
+     visibilityField.innerText = visibility + ' km'
+     uvIndexField.innerText = uvIndex
+     pressureField.innerText = pressure + ' mb'
+//      const location = document.querySelector('.location');
+//      console.log(location.textContent);
+//      console.log(location.textContent.length);
+// if (location.textContent.length > 7) {
+//   location.style.fontSize = '1.2rem';
+// }
 
      updateWeather(currTemp , cityName , localTime , condition , conditionIcon)
 }
